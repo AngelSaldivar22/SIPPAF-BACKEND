@@ -5,9 +5,9 @@
 export enum DBEnum {
     TYPE= 'postgres',
     HOST = 'localhost',
-    PORT = '8080',
+    PORT = '5432',
     USERNAME = 'postgres',
-    PASSWORD =  'Angel*220898',
+    PASSWORD =  'admin123',
     DATABASE = 'SIPPAF',
     SCHEMA = 'gjur1'
   }

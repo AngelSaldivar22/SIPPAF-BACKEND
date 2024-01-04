@@ -20,6 +20,7 @@ export class UsuarioService {
                 }
             })            
             
+            
             if (userFound) {
                 return new HttpException('El usuario ya existe', RESPONSE_CODES.ERROR_DB_CODE);
             }
