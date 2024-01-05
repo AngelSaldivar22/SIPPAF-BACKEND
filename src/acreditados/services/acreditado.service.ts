@@ -15,7 +15,7 @@ export class AcreditadoService {
     public async createAccredit(acre: CrearAcreditadoDto) {
 
         try {
-            const acreFound = await this.acreditadoRepository.findOne({
+            /*const acreFound = await this.acreditadoRepository.findOne({
                 where: {
                     s_CorreoElectronico: acre.s_CorreoElectronico
                 }
@@ -24,7 +24,7 @@ export class AcreditadoService {
             if (acreFound) {
                 return new HttpException('El acreditado ya existe', RESPONSE_CODES.ERROR_DB_CODE)
                 ;
-            }
+            }*/
             const newAcreditado = this.acreditadoRepository.create(acre);
             return this.acreditadoRepository.save(newAcreditado);
         } catch (error) {
