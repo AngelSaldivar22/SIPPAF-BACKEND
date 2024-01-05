@@ -15,15 +15,6 @@ export class AtencionesService {
     public async createAtent(aten: CrearAtencionesDto) {
 
         try {
-            const atenFound = await this.atencionesRepository.findOne({
-                where: {
-                    s_CorreoElectronico: aten.s_CorreoElectronico
-                }
-            })            
-            
-            if (atenFound) {
-                return new HttpException('La atención ya existe', RESPONSE_CODES.ERROR_DB_CODE);
-            }
             const newAtencion = this.atencionesRepository.create(aten);
             return this.atencionesRepository.save(newAtencion);
         } catch (error) {
