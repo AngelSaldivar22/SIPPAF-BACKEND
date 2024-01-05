@@ -1,21 +1,22 @@
 import { Body, Controller, Get, Post, Param, ParseIntPipe, Delete, Put, Patch } from "@nestjs/common";
-import { UpdateUsuarioDto } from "../dto/actualizar-atenciones.dto";
-import { CrearUsuarioDto } from "../dto/crear-atenciones.dto";
-import { Usuario } from "../model/atenciones.entity";
-import { UsuarioResponse } from "../response/atenciones-response";
-import { UsuarioService } from "../services/atenciones.service";
+import { CrearAtencionesDto } from "../dto/crear-atenciones.dto";
+import { Atenciones } from "../model/atenciones.entity";
+import { AtencionesResponse } from "../response/atenciones-response";
+import { AtencionesService } from "../services/atenciones.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
+import { BorradoLogicoAtencionesDto } from "../dto/borrado-logico-atenciones.dto";
+import { UpdateAtencionDto } from "../dto/actualizar-atenciones.dto";
 
-@Controller('usuarios')
-export class UsuarioController {
+@Controller('atenciones')
+export class AtencionesController {
 
-    constructor(private usuarioService: UsuarioService) {}
+    constructor(private atencionService: AtencionesService) {}
 
     @Get()
-    public async getUsuarios(): Promise<BaseResponse<Array<Usuario>>> {
-        const respuesta = await this.usuarioService.getUsers();
-        const resultado: BaseResponse<Array<UsuarioResponse>> = {
+    public async getAtenciones(): Promise<BaseResponse<Array<Atenciones>>> {
+        const respuesta = await this.atencionService.getAtents();
+        const resultado: BaseResponse<Array<AtencionesResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
             data: respuesta,
@@ -26,9 +27,9 @@ export class UsuarioController {
     }
 
     @Get(':id')
-    public async getUser(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<Usuario>> {
-        const respuesta = await this.usuarioService.getUser(id);
-        const resultado : BaseResponse<Array<UsuarioResponse>> = {
+    public async getAtencion(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<Atenciones>> {
+        const respuesta = await this.atencionService.getAtent(id);
+        const resultado : BaseResponse<Array<AtencionesResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
             data: respuesta,
@@ -39,9 +40,9 @@ export class UsuarioController {
     }
 
     @Post()
-    public async crearUsuario(@Body() newUsuario: CrearUsuarioDto): Promise<BaseResponse<CrearUsuarioDto>> {
-        const respuesta = await this.usuarioService.createUser(newUsuario);
-        const resultado : BaseResponse<Array<UsuarioResponse>> = {
+    public async crearAtencion(@Body() newAtencion: CrearAtencionesDto): Promise<BaseResponse<CrearAtencionesDto>> {
+        const respuesta = await this.atencionService.createAtent(newAtencion);
+        const resultado : BaseResponse<Array<AtencionesResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
             data: respuesta,
@@ -51,10 +52,10 @@ export class UsuarioController {
         return resultado;
     }
 
-    @Delete(':id')
-    public async deleteUser(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<void>> {
-        await this.usuarioService.deleteUser(id);
-        const resultado : BaseResponse<Array<UsuarioResponse>> = {
+    @Patch(':id')
+    public async deleteAtencion(@Param('id', ParseIntPipe) id: number,@Body() aten: BorradoLogicoAtencionesDto): Promise<BaseResponse<void>> {
+        await this.atencionService.updateAtent(id,aten);
+        const resultado : BaseResponse<Array<AtencionesResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
             data: null,
@@ -64,10 +65,11 @@ export class UsuarioController {
         return resultado;
     }
 
+
     @Patch(':id')
-    public async updateUser(@Param('id', ParseIntPipe) id: number, @Body() user: UpdateUsuarioDto): Promise<BaseResponse<void>> {
-        await this.usuarioService.updateUser(id, user);
-        const resultado : BaseResponse<Array<UsuarioResponse>> = {
+    public async updateAtent(@Param('id', ParseIntPipe) id: number, @Body() aten: UpdateAtencionDto): Promise<BaseResponse<void>> {
+        await this.atencionService.updateAtent(id, aten);
+        const resultado : BaseResponse<Array<AtencionesResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
             data: null,

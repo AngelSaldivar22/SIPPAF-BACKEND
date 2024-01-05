@@ -1,9 +1,16 @@
-export class UpdateUsuarioDto {    
-    s_Usuario?: string
-    s_Contrasenia?: string
-    id_Perfil?: number
+export class UpdateAtencionDto {    
+    f_Atencion?: string
+    id_MedioAtencion?: number
+    s_QuienElaboro?: string
+    s_Tercero?: string
+    s_Calle?: string
+    id_EntidadFederativa?: number
+    s_Municipio?: string
+    s_Telefono?: string
     s_CorreoElectronico?: string
-    swc_ReiniciarContrasenia?: boolean
-    swc_Habilitar?: boolean
-    swc_Activo?: boolean    
+    id_TipoPropuesta?: number
+    id_Especialista?: number
+    d_MontoPropuesta?: string
+    s_Observaciones?: string
+    swc_Activo?: boolean   
 }

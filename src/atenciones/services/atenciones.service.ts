@@ -1,48 +1,49 @@
 import { Injectable, HttpException, InternalServerErrorException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Usuario } from "src/model/usuario.entity";
+import { Atenciones } from "../model/atenciones.entity";
 import { Repository } from "typeorm";
-import { CrearUsuarioDto } from '../dto/crear-atenciones.dto'
-import { UpdateUsuarioDto } from "../dto/actualizar-atenciones.dto";
+import { CrearAtencionesDto } from '../dto/crear-atenciones.dto'
+import { UpdateAtencionDto } from "../dto/actualizar-atenciones.dto";
 import { RESPONSE_CODES } from "src/ultils/enums/messages-enum";
+import { BorradoLogicoAtencionesDto } from "../dto/borrado-logico-atenciones.dto";
 
 @Injectable()
-export class UsuarioService {    
+export class AtencionesService {    
     
-    constructor(@InjectRepository(Usuario) private usuarioRepository: Repository<Usuario>) { }
+    constructor(@InjectRepository(Atenciones) private atencionesRepository: Repository<Atenciones>) { }
 
-    public async createUser(user: CrearUsuarioDto) {
+    public async createAtent(aten: CrearAtencionesDto) {
 
         try {
-            const userFound = await this.usuarioRepository.findOne({
+            const atenFound = await this.atencionesRepository.findOne({
                 where: {
-                    s_CorreoElectronico: user.s_CorreoElectronico
+                    s_CorreoElectronico: aten.s_CorreoElectronico
                 }
             })            
             
-            if (userFound) {
-                return new HttpException('El usuario ya existe', RESPONSE_CODES.ERROR_DB_CODE);
+            if (atenFound) {
+                return new HttpException('La atención ya existe', RESPONSE_CODES.ERROR_DB_CODE);
             }
-            const newUsuario = this.usuarioRepository.create(user);
-            return this.usuarioRepository.save(newUsuario);
+            const newAtencion = this.atencionesRepository.create(aten);
+            return this.atencionesRepository.save(newAtencion);
         } catch (error) {
             throw new Error(error.message);
         }
     }
     
-    public async getUsers() {
+    public async getAtents() {
         try {
-            return this.usuarioRepository.find();   
+            return this.atencionesRepository.find();   
         } catch (error) {
             throw new Error(error.message);
         }        
     }
 
-    public async getUser(id: number) {
+    public async getAtent(id: number) {
         try {
-            return this.usuarioRepository.findOne({
+            return this.atencionesRepository.findOne({
                 where: {
-                    id_Usuario: id
+                    id_AtencionAcreditado: id
                 }
             })   
         } catch (error) {
@@ -50,17 +51,17 @@ export class UsuarioService {
         }        
     }
 
-    public async deleteUser(id: number) {
+    deleteAtent(id: number, aten: BorradoLogicoAtencionesDto) {
         try {
-            return this.usuarioRepository.delete({id_Usuario: id})
+            return this.atencionesRepository.update({id_AtencionAcreditado: id},aten)
         } catch (error) {
             throw new Error(error.message);
         }        
     }
 
-    updateUser(id: number, user: UpdateUsuarioDto) {
+    updateAtent(id: number, aten: UpdateAtencionDto) {
         try {
-            return this.usuarioRepository.update({id_Usuario: id}, user)   
+            return this.atencionesRepository.update({id_AtencionAcreditado: id}, aten)   
         } catch (error) {
             throw new Error(error.message);
         }        

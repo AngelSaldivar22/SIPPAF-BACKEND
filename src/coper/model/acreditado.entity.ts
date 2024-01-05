@@ -1,36 +1,36 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from "typeorm";
 
 
-@Entity({name: 'tb_AtencionesAcreditados'})
-export class Atenciones {
+@Entity({name: 'tb_Acreditados'})
+export class Acreditado {
     @PrimaryGeneratedColumn('increment')
-    id_AtencionAcreditado: number;
+    id_Acreditado: number;
     @Column()
-    f_Atencion: string;
+    s_Acreditado: string;
     @Column()
-    id_MedioAtencion: number;
+    s_PersonasRelacionadas: string;
     @Column()
-    s_QuienElaboro: string;
+    id_TipoCartera: number;
     @Column()
-    s_Tercero: string;
+    id_SucursalBancaria: number;
     @Column()
     s_Calle: string;
     @Column()
-    id_EntidadFederativa: number;
+    s_Colonia: string;
     @Column()
     s_Municipio: string;
+    @Column()
+    id_EntidadFederativa: number;
     @Column()
     s_Telefono: string;
     @Column()
     s_CorreoElectronico: string;
     @Column()
-    id_TipoPropuesta: number;
-    @Column()
-    id_Especialista: number;
-    @Column()
-    d_MontoPropuesta: string;
-    @Column()
     s_Observaciones: string;
+    @Column()
+    id_Usuario: number;
+    @Column()
+    f_Captura: string;
     @Column()
     swc_Activo: boolean;
 }
