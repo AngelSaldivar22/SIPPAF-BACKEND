@@ -7,7 +7,7 @@ import { ArchivoService } from "src/archivos/services/archivo.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
 
-@Controller('archivos')
+@Controller('/archivos')
 export class ArchivoController {
 
     constructor(private archivoService: ArchivoService) {}

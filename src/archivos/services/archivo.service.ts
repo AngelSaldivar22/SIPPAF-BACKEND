@@ -16,7 +16,7 @@ export class ArchivoService {
         try {
             const fileFound = await this.archivoRepository.findOne({
                 where: {
-                    s_NombreDocumento: archivo.s_NombreDocumento
+                    id_Documento: archivo.id_Documento
                 }
             })            
             

@@ -2,7 +2,7 @@ export class UpdateArchivoDto {
     id_Documento?: number
     id_Propuesta?: number
     id_TipoDocumento?: number
-    i_IdentificadorEtapa?: string
+    i_IdentificadorEtapa?: number
     id_Etapa?: number
     s_NombreDocumento?: string
     b_DocumentoBinario?: string
