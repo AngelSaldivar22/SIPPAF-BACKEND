@@ -1,9 +1,10 @@
 export class UpdateArchivoDto {    
-    s_Usuario?: string
-    s_Contrasenia?: string
-    id_Perfil?: number
-    s_CorreoElectronico?: string
-    swc_ReiniciarContrasenia?: boolean
-    swc_Habilitar?: boolean
+    id_Documento?: number
+    id_Propuesta?: number
+    id_TipoDocumento?: number
+    i_IdentificadorEtapa?: string
+    id_Etapa?: number
+    s_NombreDocumento?: string
+    b_DocumentoBinario?: string
     swc_Activo?: boolean    
 }

@@ -1,22 +1,22 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn } from "typeorm";
 
 
-@Entity({name: 'tb_Archivos'})
+@Entity({name: 'tb_Documentos'})
 export class Archivo {
-    @PrimaryGeneratedColumn('increment')
-    id_Usuario: number;
+    @PrimaryGeneratedColumn({type: 'int'})
+    id_Documento: number;
     @Column()
-    s_Usuario: string;
+    id_Propuesta: number;
     @Column()
-    id_Perfil: number;
-    @Column()
-    s_Contrasenia: string;
-    @Column()
-    s_CorreoElectronico: string;
-    @Column()
-    swc_ReiniciarContrasenia: boolean
-    @Column()
-    swc_Habilitar: boolean
-    @Column()
-    swc_Activo: boolean
+    id_TipoDocumento: number;
+     @Column()
+     i_identificadorEtapa: number;
+     @Column()
+     id_Etapa: number;
+     @Column()
+     s_NombreDocumento: string;
+     @Column()
+     b_DocumentoBinario: string;
+     @Column()
+     swc_Activo: boolean;
 }

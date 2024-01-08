@@ -11,19 +11,19 @@ export class ArchivoService {
     
     constructor(@InjectRepository(Archivo) private archivoRepository: Repository<Archivo>) { }
 
-    public async createFile(user: CrearArchivoDto) {
+    public async createFile(archivo: CrearArchivoDto) {
 
         try {
             const fileFound = await this.archivoRepository.findOne({
                 where: {
-                    s_CorreoElectronico: user.s_CorreoElectronico
+                    s_NombreDocumento: archivo.s_NombreDocumento
                 }
             })            
             
             if (fileFound) {
                 return new HttpException('El archivo ya existe', RESPONSE_CODES.ERROR_DB_CODE);
             }
-            const newArchivo = this.archivoRepository.create(user);
+            const newArchivo = this.archivoRepository.create(archivo);
             return this.archivoRepository.save(newArchivo);
         } catch (error) {
             throw new Error(error.message);
@@ -42,7 +42,7 @@ export class ArchivoService {
         try {
             return this.archivoRepository.findOne({
                 where: {
-                    id_Usuario: id
+                    id_Documento: id
                 }
             })   
         } catch (error) {
@@ -52,15 +52,15 @@ export class ArchivoService {
 
     public async deleteFile(id: number) {
         try {
-            return this.archivoRepository.delete({id_Usuario: id})
+            return this.archivoRepository.delete({id_Documento: id})
         } catch (error) {
             throw new Error(error.message);
         }        
     }
 
-    updateFile(id: number, user: UpdateArchivoDto) {
+    updateFile(id: number, archivo: UpdateArchivoDto) {
         try {
-            return this.archivoRepository.update({id_Usuario: id}, user)   
+            return this.archivoRepository.update({id_Documento: id}, archivo)   
         } catch (error) {
             throw new Error(error.message);
         }        

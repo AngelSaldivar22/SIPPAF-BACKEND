@@ -8,7 +8,7 @@ export enum DBEnum {
     PORT = '5432',
     USERNAME = 'postgres',
     PASSWORD =  'postgres314',
-    DATABASE = 'sippaf',
+    DATABASE = 'indep',
     SCHEMA = 'gjur1'
   }
   
