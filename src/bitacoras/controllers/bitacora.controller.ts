@@ -85,13 +85,26 @@ export class BitacoraController {
             return resultado;
         }
 
+        @Get('/buscaE/:fechaIni/:fechaFin')
+        public async getBiatcoraxFechas(@Param('fechaIni') fechaIni: string, @Param('fechaFin') fechaFin: string): Promise<BaseResponse<void>> {
+          //  await this.bitacoraService.getFilterBitacoras(acreditado, bitacora);
+            const respuesta = await this.bitacoraService.getBitacoraxFecha(fechaIni,fechaFin);
+            const resultado : BaseResponse<Array<BitacoraResponse>> = {
+                code: RESPONSE_CODES.SUCCESFULL,
+                message: INTERNAL_MESSAGES.SUCCESFULL,
+                data: respuesta,
+                internalCode: '',
+                correlationId: ''
+            }
+            return resultado;
+        }
 
 
 
     //Filtrado general
     @Get('/filtrado/')
-    public async getBitacoraFilter(@Body() bitacora: Array<FiltrarBitacoraDto>): Promise<BaseResponse<void>> {
-        //  await this.bitacoraService.getFilterBitacoras(acreditado, bitacora);
+    public async getBitacoraFilter(@Body() bitacora: FiltrarBitacoraDto): Promise<BaseResponse<void>> {
+       // await this.bitacoraService.getFilterBitacoras(bitacora);
         const respuesta = await this.bitacoraService.getFilterBitacoras(bitacora);
         const resultado : BaseResponse<Array<BitacoraResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,

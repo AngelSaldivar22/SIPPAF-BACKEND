@@ -1,4 +1,4 @@
-import { Injectable, HttpException, InternalServerErrorException } from "@nestjs/common";
+import { Injectable, HttpException, InternalServerErrorException, Options } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Bitacora } from "src/bitacoras/model/bitacora.entity";
 import { Repository } from "typeorm";
@@ -40,18 +40,6 @@ export class BitacoraService {
         }        
     }
 
-
-
-    public async getFilterBitacoras(acreditado: Array<FiltrarBitacoraDto>) {
-        try {
-            return this.bitacoraRepository.findBy({
-                id_Acreditado: acreditado.push()
-            })   
-        } catch (error) {
-            throw new Error(error.message);
-        }        
-    }
-
     public async getBitacoraxAcre(acreditado: number) {
         try {
             return this.bitacoraRepository.findBy({id_Acreditado: acreditado})   
@@ -71,6 +59,23 @@ export class BitacoraService {
     public async getBitacoraxEsp(especialista: number) {
         try {
             return this.bitacoraRepository.findBy({id_Especialista:especialista})   
+        } catch (error) {
+            throw new Error(error.message);
+        }        
+    }
+
+    public async getBitacoraxFecha(fechaIni: string, fechaFin:string) {
+        try {
+            return this.bitacoraRepository.findBy({f_Inicial:fechaIni, f_Final:fechaFin})   
+        } catch (error) {
+            throw new Error(error.message);
+        }        
+    }
+
+    
+    public async getFilterBitacoras(bitacora: FiltrarBitacoraDto) {
+        try {
+            return this.bitacoraRepository.findOneBy(bitacora) 
         } catch (error) {
             throw new Error(error.message);
         }        
