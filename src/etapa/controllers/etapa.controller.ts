@@ -6,8 +6,10 @@ import { EtapaService } from "../services/etapa.service";
 import { EtapaResponse } from "../response/etapa.response";
 import { UpdateEtapaDto } from "../dto/actualizar-etapa.dto";
 import { CrearEtapaDto } from "../dto/crear-etapa.dto";
+import { ApiTags } from "@nestjs/swagger";
 
-@Controller('/tipo-documento')
+@ApiTags("Etapas")
+@Controller('/etapas')
 export class EtapaController { 
 
     constructor(private etapaService: EtapaService) {}

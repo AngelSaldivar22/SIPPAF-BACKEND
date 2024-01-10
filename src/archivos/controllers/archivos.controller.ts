@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Param, ParseIntPipe, Delete, Put, Patch } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { UpdateArchivoDto } from "src/archivos/dto/actualizar-archivo.dto";
 import { CrearArchivoDto } from "src/archivos/dto/crear-archivo.dto";
 import { DesactivaArchivoDto } from "src/archivos/dto/desactiva-archivo.dto";
@@ -8,6 +9,8 @@ import { ArchivoService } from "src/archivos/services/archivo.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
 
+
+@ApiTags("archivos")
 @Controller('archivos')
 export class ArchivoController {
 

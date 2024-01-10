@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, JoinColumn, Many
 
 
 
-@Entity({name: 'tbC_TipoDocumentos'})
+@Entity({name: 'tbC_TiposDocumentos'})
 export class TipoDocumento {
     @PrimaryGeneratedColumn({type: 'int'})
     id_TipoDocumento: number;

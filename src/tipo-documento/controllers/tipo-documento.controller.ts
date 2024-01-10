@@ -6,8 +6,11 @@ import { TipoDocumentoResponse } from "../response/tipo-documento.response";
 import { TipoDocumento } from "src/tipo-documento/model/tipo-documento.entity";
 import { CrearTipoDocumentoDto } from "src/tipo-documento/dto/crear-tipo-documento.dto";
 import { UpdateTipoDocumentoDto } from "../dto/actualizar-tipo-documento.dto";
+import { ApiTags } from "@nestjs/swagger";
 
-@Controller('/tipo-documento')
+
+@ApiTags("Tipos de Documentos")
+@Controller('tipo-documento')
 export class TipoDocumentoController { 
 
     constructor(private tipoDocumentoService: TipoDocumentoService) {}
