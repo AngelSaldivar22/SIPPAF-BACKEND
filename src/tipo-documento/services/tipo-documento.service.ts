@@ -11,7 +11,7 @@ export class TipoDocumentoService {
     
     constructor(@InjectRepository(TipoDocumento) private tipoDocumentoRepository: Repository<TipoDocumento>) { }
 
-    public async createFile(tipoDocumento: CrearTipoDocumentoDto) {
+    public async createFileType(tipoDocumento: CrearTipoDocumentoDto) {
 
         try {
             const fileTypeFound = await this.tipoDocumentoRepository.findOne({
@@ -23,17 +23,16 @@ export class TipoDocumentoService {
             if (fileTypeFound) {
                 return new HttpException('El tipo de documento ya existe', RESPONSE_CODES.ERROR_DB_CODE);
             }
-            if (!fileTypeFound) {
                 const newTipoDocumento = this.tipoDocumentoRepository.create(tipoDocumento);
                 return this.tipoDocumentoRepository.save(newTipoDocumento);
-            }
+            
             
         } catch (error) {
             throw new Error(error.message);
         }
     }
     
-    public async getFiles() {
+    public async getFileTypes() {
         try {
             return this.tipoDocumentoRepository.find();   
         } catch (error) {
@@ -41,7 +40,7 @@ export class TipoDocumentoService {
         }        
     }
 
-    public async getFile(id: number) {
+    public async getFileType(id: number) {
         try {
             return this.tipoDocumentoRepository.findOne({
                 where: {

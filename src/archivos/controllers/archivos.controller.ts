@@ -1,13 +1,14 @@
 import { Body, Controller, Get, Post, Param, ParseIntPipe, Delete, Put, Patch } from "@nestjs/common";
 import { UpdateArchivoDto } from "src/archivos/dto/actualizar-archivo.dto";
 import { CrearArchivoDto } from "src/archivos/dto/crear-archivo.dto";
+import { DesactivaArchivoDto } from "src/archivos/dto/desactiva-archivo.dto";
 import { Archivo } from "src/archivos/model/archivo.entity";
 import { ArchivoResponse } from "src/archivos/response/archivo-response";
 import { ArchivoService } from "src/archivos/services/archivo.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
 
-@Controller('/archivos')
+@Controller('archivos')
 export class ArchivoController {
 
     constructor(private archivoService: ArchivoService) {}
@@ -51,13 +52,13 @@ export class ArchivoController {
         return resultado;
     }
 
-    @Delete(':id')
-    public async deleteFile(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<void>> {
-        await this.archivoService.deleteFile(id);
+    @Patch('remove/:id')
+    public async deleteFile(@Param('id', ParseIntPipe) id: number, @Body() archivo: DesactivaArchivoDto): Promise<BaseResponse<void>> {
+        await this.archivoService.deleteFile(id, archivo);
         const resultado : BaseResponse<Array<ArchivoResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
-            data: null,
+            data: archivo,
             internalCode: '',
             correlationId: ''
         }

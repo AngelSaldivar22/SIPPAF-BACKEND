@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { CrearArchivoDto } from "src/archivos/dto/crear-archivo.dto";
 import { UpdateArchivoDto } from "src/archivos/dto/actualizar-archivo.dto";
+import { DesactivaArchivoDto } from "../dto/desactiva-archivo.dto";
 import { RESPONSE_CODES } from "src/ultils/enums/messages-enum";
 import { Archivo } from "../model/archivo.entity";
 
@@ -50,15 +51,15 @@ export class ArchivoService {
         }        
     }
 
-    public async deleteFile(id: number) {
+    public async deleteFile(id: number,archivo: DesactivaArchivoDto) {
         try {
-            return this.archivoRepository.delete({id_Documento: id})
+            return this.archivoRepository.update({id_Documento: id}, archivo)
         } catch (error) {
             throw new Error(error.message);
         }        
     }
 
-    updateFile(id: number, archivo: UpdateArchivoDto) {
+    public async updateFile(id: number, archivo: UpdateArchivoDto) {
         try {
             return this.archivoRepository.update({id_Documento: id}, archivo)   
         } catch (error) {

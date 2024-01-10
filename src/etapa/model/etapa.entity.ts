@@ -2,13 +2,13 @@ import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, JoinColumn, Many
 
 
 
-@Entity({name: 'tbC_TipoDocumentos'})
-export class TipoDocumento {
+@Entity({name: 'tbC_Etapa'})
+export class Etapa {
     @PrimaryGeneratedColumn({type: 'int'})
-    id_TipoDocumento: number;
+    id_Etapa: number;
 
     @Column({type: 'varchar', nullable: false, default: ''})
-    s_TipoDocumento: string;
+    s_Etapa: string;
 
     @Column({type: 'boolean', nullable: false, default: false})
     swc_Activo: boolean;

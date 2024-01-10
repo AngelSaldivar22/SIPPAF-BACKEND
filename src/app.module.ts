@@ -8,6 +8,7 @@ import { PropuestaModule } from './propuestas/repositories/propuesta.module';
 import { BitacoraModule } from './bitacoras/repositories/bitacora.module'
 import { ArchivoModule } from "src/archivos/repositories/archivos.module";
 import { TipoDocumentoModule } from "src/tipo-documento/repositories/tipo-documento.module";
+import { EtapaModule } from './etapa/repositories/etapa.module';
 
 @Module({
   imports: [
@@ -16,7 +17,8 @@ import { TipoDocumentoModule } from "src/tipo-documento/repositories/tipo-docume
     PropuestaModule,
     BitacoraModule,
     ArchivoModule,
-    TipoDocumentoModule
+    TipoDocumentoModule,
+    EtapaModule
   ],
   controllers: [AppController],
   providers: [AppService],

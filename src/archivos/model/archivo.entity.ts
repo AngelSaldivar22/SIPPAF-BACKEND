@@ -1,5 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, PrimaryColumn, JoinColumn, ManyToOne } from "typeorm";
 import { Propuesta } from "src/propuestas/model/propuesta.entity";
+import { TipoDocumento } from "src/tipo-documento/model/tipo-documento.entity";
+import { Etapa } from "src/etapa/model/etapa.entity";
 
 
 
@@ -12,19 +14,24 @@ export class Archivo {
     @JoinColumn({ name: "id_Propuesta" }) 
     propuesta: Propuesta;
 
-    // @ManyToOne(() => TipoDocumento, (tipoDocumento) => tipoDocumento.id_TipoDocumento)
-    // @JoinColumn({ name: "id_TipoDocumento" })
-    // tipoDocumento: TipoDocumento;
-    // @Column({type: 'int', nullable: false, default: ''})
-    // id_TipoDocumento: number;
-    // @Column({type: 'int', nullable: false, default: ''})
-    // i_identificadorEtapa: number;
-    // @Column({type: 'int', nullable: false, default: ''})
-    // id_Etapa: number;
-    //  @Column({type: 'int', nullable: false, default: ''})
-    //  s_NombreDocumento: string;
-    // @Column({type: 'varchar', nullable: false, default: ''})
-    // b_DocumentoBinario: string | null;
-    // @Column({type: 'boolean', nullable: false, default: ''})
-    // swc_Activo: boolean;
+    @ManyToOne(() => TipoDocumento, (tipoDocumento) => tipoDocumento.id_TipoDocumento)
+    @JoinColumn({ name: "id_TipoDocumento" })
+    tipoDocumento: TipoDocumento;
+
+    @ManyToOne(() => Etapa, (etapa) => etapa.id_Etapa)
+    @JoinColumn({ name: "id_Etapa" })
+    etapa: Etapa;
+
+    @ManyToOne(() => Etapa, (i_Etapa) => i_Etapa.id_Etapa )
+    @JoinColumn({ name: "i_IdentificadorEtapa" })
+    i_etapa: Etapa
+
+    @Column({type: 'varchar', nullable: false, default: ''})
+    s_NombreDocumento: string;
+
+    @Column({type: 'varchar', nullable: false, default: ''})
+    b_DocumentoBinario: string | null;
+
+    @Column({type: 'boolean', nullable: false, default: false})
+    swc_Activo: boolean;
 }

@@ -13,8 +13,8 @@ export class TipoDocumentoController {
     constructor(private tipoDocumentoService: TipoDocumentoService) {}
 
     @Get()
-    public async getArchivos(): Promise<BaseResponse<Array<TipoDocumento>>> {
-        const respuesta = await this.tipoDocumentoService.getFiles();
+    public async getTipoDocumentos(): Promise<BaseResponse<Array<TipoDocumento>>> {
+        const respuesta = await this.tipoDocumentoService.getFileTypes();
         const resultado: BaseResponse<Array<TipoDocumentoResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
@@ -27,7 +27,7 @@ export class TipoDocumentoController {
 
     @Get(':id')
     public async getFile(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<TipoDocumento>> {
-        const respuesta = await this.tipoDocumentoService.getFile(id);
+        const respuesta = await this.tipoDocumentoService.getFileType(id);
         const resultado : BaseResponse<Array<TipoDocumentoResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
@@ -40,7 +40,7 @@ export class TipoDocumentoController {
 
     @Post()
     public async crearTipoDocumento(@Body() newTipoDocumento: CrearTipoDocumentoDto): Promise<BaseResponse<CrearTipoDocumentoDto>> {
-        const respuesta = await this.tipoDocumentoService.createFile(newTipoDocumento);
+        const respuesta = await this.tipoDocumentoService.createFileType(newTipoDocumento);
         const resultado : BaseResponse<Array<TipoDocumentoResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
