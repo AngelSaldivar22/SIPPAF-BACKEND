@@ -16,26 +16,52 @@ export class ArchivoController {
 
     constructor(private archivoService: ArchivoService) {}
 
+    // @Get()
+    // public async getArchivos(): Promise<BaseResponse<Array<Archivo>>> {
+    //     const respuesta = await this.archivoService.getFiles();
+    //     const resultado: BaseResponse<Array<ArchivoResponse>> = {
+    //         code: RESPONSE_CODES.SUCCESFULL,
+    //         message: INTERNAL_MESSAGES.SUCCESFULL,
+    //         data: respuesta,
+    //         internalCode: '',
+    //         correlationId: ''
+    //     }
+    //     return resultado;
+    // }
+
     @Get()
-    public async getArchivos(): Promise<BaseResponse<Array<Archivo>>> {
+    public async getArchivos(): Promise<BaseResponse<Array<ArchivoResponse>>> {
         const respuesta = await this.archivoService.getFiles();
         const resultado: BaseResponse<Array<ArchivoResponse>> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
-            data: respuesta,
+            data: respuesta.map(archivo => new ArchivoResponse(archivo)), // Mapear a ArchivoResponse si es necesario
             internalCode: '',
             correlationId: ''
         }
         return resultado;
     }
 
+    // @Get(':id')
+    // public async getFile(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<Archivo>> {
+    //     const respuesta = await this.archivoService.getFile(id);
+    //     const resultado : BaseResponse<Array<ArchivoResponse>> = {
+    //         code: RESPONSE_CODES.SUCCESFULL,
+    //         message: INTERNAL_MESSAGES.SUCCESFULL,
+    //         data: respuesta,
+    //         internalCode: '',
+    //         correlationId: ''
+    //     }
+    //     return resultado;
+    // }
+
     @Get(':id')
-    public async getFile(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<Archivo>> {
+    public async getFile(@Param('id', ParseIntPipe) id: number): Promise<BaseResponse<ArchivoResponse>> {
         const respuesta = await this.archivoService.getFile(id);
-        const resultado : BaseResponse<Array<ArchivoResponse>> = {
+        const resultado : BaseResponse<ArchivoResponse> = {
             code: RESPONSE_CODES.SUCCESFULL,
             message: INTERNAL_MESSAGES.SUCCESFULL,
-            data: respuesta,
+            data: new ArchivoResponse(respuesta), // Mapear a ArchivoResponse si es necesario
             internalCode: '',
             correlationId: ''
         }

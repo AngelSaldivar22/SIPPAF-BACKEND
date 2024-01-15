@@ -7,7 +7,10 @@ import { PropuestaService } from "src/propuestas/services/propuesta.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
 import { DesactivaPropuestaDto } from "../dto/desactivado-propuesta.dto";
+import { ApiTags } from "@nestjs/swagger";
 
+
+@ApiTags("Propuestas")
 @Controller('propuestas')
 export class PropuestaController {
 

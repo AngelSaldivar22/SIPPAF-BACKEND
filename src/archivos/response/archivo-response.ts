@@ -5,6 +5,10 @@ export class ArchivoResponse {
     i_IdentificadorEtapa?: number
     id_Etapa?: number
     s_NombreDocumento?: string
-    b_DocumentoBinario?: string
+    b_DocumentoBinario?: Buffer | null
     swc_Activo?: boolean 
+
+    constructor(data: Partial<ArchivoResponse>) {
+        Object.assign(this, data);
+    }
 }

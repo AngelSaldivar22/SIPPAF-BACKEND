@@ -29,9 +29,9 @@ export class Archivo {
     @Column({type: 'varchar', nullable: false, default: ''})
     s_NombreDocumento: string;
 
-    @Column({type: 'varchar', nullable: false, default: ''})
-    b_DocumentoBinario: string | null;
+    @Column({type: 'bytea', nullable: false, default: ''})
+    b_DocumentoBinario: Buffer | null;
 
-    @Column({type: 'boolean', nullable: false, default: false})
+    @Column({type: 'boolean', nullable: false, default: true})
     swc_Activo: boolean;
 }

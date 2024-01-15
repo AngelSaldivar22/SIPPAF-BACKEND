@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Param, ParseIntPipe, Delete, Put, Patch } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { UpdateUsuarioDto } from "src/dto/actualizar-usuario.dto";
 import { CrearUsuarioDto } from "src/dto/crear-usuario.dto";
 import { Usuario } from "src/model/usuario.entity";
@@ -7,6 +8,8 @@ import { UsuarioService } from "src/services/usuario.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
 
+
+@ApiTags("Usuarios")
 @Controller('usuarios')
 export class UsuarioController {
 

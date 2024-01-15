@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Post, Param, ParseIntPipe, Delete, Put, Patch } from "@nestjs/common";
+import { ApiTags } from "@nestjs/swagger";
 import { CrearBitacoraDto } from "src/bitacoras/dto/crear-bitacora.dto";
 import { FiltrarBitacoraDto } from "src/bitacoras/dto/filtrado-bitacora.dto";
 import { Bitacora } from "src/bitacoras/model/bitacora.entity";
@@ -7,6 +8,8 @@ import { BitacoraService } from "src/bitacoras/services/bitacora.service";
 import { RESPONSE_CODES, INTERNAL_MESSAGES } from "src/ultils/enums/messages-enum";
 import { BaseResponse } from "src/ultils/response/base-response";
 
+
+@ApiTags("Bitacoras")
 @Controller('bitacoras')
 export class BitacoraController {
 

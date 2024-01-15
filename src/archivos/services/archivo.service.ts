@@ -15,15 +15,15 @@ export class ArchivoService {
     public async createFile(archivo: CrearArchivoDto) {
 
         try {
-            const fileFound = await this.archivoRepository.findOne({
-                where: {
-                    id_Documento: archivo.id_Documento
-                }
-            })            
+            // const fileFound = await this.archivoRepository.findOne({
+            //     where: {
+            //         id_Documento: archivo.id_Documento
+            //     }
+            // })            
             
-            if (fileFound) {
-                return new HttpException('El archivo ya existe', RESPONSE_CODES.ERROR_DB_CODE);
-            }
+            // if (fileFound) {
+            //     return new HttpException('El archivo ya existe', RESPONSE_CODES.ERROR_DB_CODE);
+            // }
             const newArchivo = this.archivoRepository.create(archivo);
             return this.archivoRepository.save(newArchivo);
         } catch (error) {
